@@ -3,16 +3,58 @@ title: "Briefing Templates"
 output: html_notebook
 ---
 
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+Air pollutants are emitted from many sources and released into the atmosphere; all these sources contribute to how much pollution we are exposed to. 
 
-Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+However, location matters in terms of the actual concentrations experienced. Concentrations depend not just on where and how much emissions are released, but also on weather conditions, contributions from other countries, shipping and natural sources as well as chemical reactions in the atmosphere.  For example, concentrations are higher in the southeast of England due to transboundary contributions as well as in large urban areas due to emissions within major towns and cities. 
 
-```{r}
-plot(cars)
-```
+## Datasets 
 
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+<div>
+  <label for="pollutant-select">Select a Pollutant:</label>
+  <select id="pollutant-select" onchange="toggleSections()">
+    <option value="">--Please choose an option--</option>
+    <option value="pm25">PM 2.5</option>
+    <option value="nh3">NH3</option>
+  </select>
+</div>
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+<div id="pm25" class="pollutant-section" style="display:none;">
+### PM 2.5
+  Fine particulate matter (PM2.5)
 
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+  Emissions: decreases from many sources, particularly from road transport and energy industries, contributed to a decrease in overall emissions, by 12% between 2018-2022. However, emissions from domestic wood burning and industrial biomass combustion have increased.  
+
+  Concentrations: Population exposure to PM2.5 in England has decreased by 22% in 2023 (most recent year available) compared to the 2018 baseline.  
+
+  Progress: while emissions and concentrations are below current legal limits and have been declining, more reductions are needed to meet our 2030 ERC’s and our 2040 EA population exposure targets.
+</div>
+
+<div id="nh3" class="pollutant-section" style="display:none;">
+### NH3
+  NH3 (Ammonia) is primarily emitted from agricultural activities, such as livestock waste and the use of fertilizers. It contributes to the formation of particulate matter and can cause respiratory problems.
+
+  Emissions: A significant portion of NH3 emissions comes from livestock manure and fertilizers, with efforts underway to mitigate these emissions through improved agricultural practices.
+
+  Concentrations: NH3 concentrations have shown variability, with some regions experiencing increased levels due to agricultural activities.
+
+  Progress: Regulations and initiatives aimed at reducing agricultural emissions are crucial to improving air quality and achieving environmental targets.
+</div>
+
+<script>
+function toggleSections() {
+  const pm25Section = document.getElementById("pm25");
+  const nh3Section = document.getElementById("nh3");
+  const selectedValue = document.getElementById("pollutant-select").value;
+
+  // Hide both sections initially
+  pm25Section.style.display = "none";
+  nh3Section.style.display = "none";
+
+  // Show the selected section
+  if (selectedValue === "pm25") {
+    pm25Section.style.display = "block";
+  } else if (selectedValue === "nh3") {
+    nh3Section.style.display = "block";
+  }
+}
+</script>
